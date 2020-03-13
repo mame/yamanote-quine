@@ -1,0 +1,13 @@
+file "../README.md" => ["../yamanote-quine-inner-circle.rb", "README.md.gen.rb"] do
+  ruby "README.md.gen.rb"
+end
+file "../yamanote-quine-inner-circle.rb" => ["gen.rb", "code.rb", "font.rb"] do
+  ruby "gen.rb", "inner"
+end
+file "../yamanote-quine-outer-circle.rb" => ["gen.rb", "code.rb", "font.rb"] do
+  ruby "gen.rb", "outer"
+end
+
+task :default => ["../README.md", "../yamanote-quine-inner-circle.rb", "../yamanote-quine-outer-circle.rb", "test.sh"] do
+  sh "./test.sh"
+end
